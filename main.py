@@ -8,10 +8,14 @@ class Bot(GoslingAgent):
         if self.intent is not None:
             return
 
+###################################################################################################
+
         # Check if the bot is in the kickoff phase
         if self.kickoff_flag:
             self.set_intent(kickoff())
             return
+
+###################################################################################################
 
         # Checking distances from goals to balls and players
         Dbf_g = abs(self.ball.location.y - self.foe_goal.location.y)
@@ -39,7 +43,7 @@ class Bot(GoslingAgent):
             self.set_intent(hits['away_from_our_net'][0])  
             return
         
-###################################################################################################
+####################################################################################################
 
         
         available_boosts = [boost for boost in self.boost if boost.large and boost.active]
@@ -63,3 +67,5 @@ class Bot(GoslingAgent):
             if closest_boost is not None:
                 self.set_intent(goto(closest_boost.location)) 
                 return
+
+#####################################################################################################
